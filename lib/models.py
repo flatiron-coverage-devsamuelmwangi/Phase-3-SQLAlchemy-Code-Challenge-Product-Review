@@ -10,16 +10,30 @@ from sqlalchemy.ext.declarative import declarative_base
 
 Base = declarative_base()
 
-engine = create_engine('sqlite:///reviews.db', echo=True)
+engine = create_engine('sqlite:///db/reviews.db', echo=True)
+
+# class Review(Base):
+#     pass
+
 
 class User(Base):
-    pass
+    __tablename__ = 'users'
 
-class Review(Base):
-    pass
+    id = Column(Integer, primary_key=True)
+    name = Column(String())
+
+
+    def __repr__(self):
+        return f'User: {self.name}'
+
 
 class Product(Base):
-    pass
+    __tablename__ = 'products'
+
+    id = Column(Integer, primary_key=True)
+    name = Column(String())
+    price = Column(Integer)
 
 
-Base.metadata.create_all(bind=engine)
+    def __repr__(self):
+        return f'Product: {self.name}'

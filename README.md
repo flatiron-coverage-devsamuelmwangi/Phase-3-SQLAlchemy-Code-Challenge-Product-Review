@@ -1,6 +1,5 @@
 # Phase 3 Code Challenge: Product Reviews
 
-
 For this assignment, we'll be working with an e-commerce domain. We'll be
 focusing on the product reviews.
 
@@ -16,12 +15,12 @@ start coding_. Remember to identify a single source of truth for your data.
 
 ## Topics
 
-- SQLalchemy Migrations
-- SQLalchemy Relationships
+- SQLAlchemy Migrations
+- SQLAlchemy Relationships
 - Class and Instance Methods
-- SQLalchemy Querying
+- SQLAlchemy Querying
 
-*** 
+***
 
 ## Instructions
 
@@ -85,11 +84,8 @@ attributes specified in the deliverables below.
 Write the following methods in the classes in the files provided. Feel free to
 build out any helper methods if needed.
 
-Deliverables use the notation `#` for instance methods, and `.` for class
-methods.
-
-Remember: SQLalchemy give your classes access to a lot of methods already!
-Keep in mind what methods SQLalchemy gives you access to on each of your
+Remember: SQLAlchemy give your classes access to a lot of methods already!
+Keep in mind what methods SQLAlchemy gives you access to on each of your
 classes when you're approaching the deliverables below.
 
 ### Migrations
@@ -112,56 +108,55 @@ deliverables.
 
 ### Object Relationship Methods
 
-Use SQLalchemy query methods where
-appropriate (i.e. `has_many`, `has_many through`, and `belongs_to`).
+Use SQLAlchemy query methods where
+appropriate.
 
 #### Review
 
-- `Review#user`
+- `Review user()`
   - returns the `User` instance for this Review
-- `Review#product`
+- `Review product()`
   - returns the `Product` instance for this Review
 
 #### Product
 
-- `Product#reviews`
+- `Product reviews()`
   - returns a collection of all the Reviews for the Product
-- `Product#users`
+- `Product users()`
   - returns a collection of all the Users who reviewed the Product
 
 #### User
 
-- `User#reviews`
+- `User reviews()`
   - returns a collection of all the Reviews that the User has given
-- `User#products`
+- `User products()`
   - returns a collection of all the Products that the User has reviewed
 
 Use `python debug.py` and check that these methods work before proceeding. For
-example, you should be able to call `User.first.products` and see a list of the
-products for the first user in the database based on your seed data; and
-`Review.first.user` should return the user for the first review in the database.
+example, you should be able to call `session.query(User).first().products` and see a list of the
+products for the first user in the database based on your seed data; and `session.query(Review).first().user`should return the user for the first review in the database.
 
 ### Aggregate and Relationship Methods
 
 #### Review
 
-- `Review#print_review`
+- `Review print_review()`
   - should `print` to the terminal a string formatted as follows: `Review for {insert product name} by {insert user name}: {insert review star_rating}. {insert review comment}`
 
 #### Product
 
-- `Product#leave_review(user, star_rating, comment)`
+- `Product leave_review(user, star_rating, comment)`
   - takes a `User` (an instance of the `User` class), a `star_rating` (integer), and a `comment` (string) as arguments, and creates a new `Review` in the database associated with this Product and the User
-- `Product#print_all_reviews`
+- `Product print_all_reviews()`
   - should `print` to the terminal a string representing each review for this product
   - each review should be formatted as follows: `Review for {insert product name} by {insert user name}: {insert review star_rating}. {insert review comment}`
-- `Product#average_rating`
+- `Product average_rating()`
   - returns a `float` representing the average star rating for all reviews for this product
 
 #### User
 
-- `User#favorite_product`
+- `User favorite_product()`
   - returns the product instance that has the highest star rating from this user
-- `User#remove_reviews(product)`
+- `User remove_reviews(product)`
   - takes a `Product` (an instance of the `Product` class) and removes _all_ of this user's reviews for that product
   - you will have to delete any rows from the `reviews` table associated with this user and the product
