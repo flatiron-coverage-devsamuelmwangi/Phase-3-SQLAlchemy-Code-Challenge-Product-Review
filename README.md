@@ -160,3 +160,11 @@ products for the first user in the database based on your seed data; and `sessio
 - `User remove_reviews(product)`
   - takes a `Product` (an instance of the `Product` class) and removes _all_ of this user's reviews for that product
   - you will have to delete any rows from the `reviews` table associated with this user and the product
+
+# Solved
+## Run Instructions
+- To get started, run `pipenv install && pipenv shell` while inside of root directory.
+- Run `alembic upgrade head`
+- Run `python seed.py`
+- Run `python debug.py`
+- Run `session.query(User).first()` (Should return `User: John`)
